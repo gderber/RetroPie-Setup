@@ -15,7 +15,7 @@ rp_module_desc="openjk_ja - OpenJK (JediAcademy)"
 rp_module_licence="https://raw.githubusercontent.com/JACoders/OpenJK/master/LICENSE.txt"
 rp_module_help="Installs OpenJK built for JediAcademy (SP + MP)"
 rp_module_section="exp"
-rp_module_flags="!all x86"
+rp_module_flags=""
 
 function _arch_openjk_ja() {
     # exact parsing from Makefile
