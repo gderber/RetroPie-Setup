@@ -13,7 +13,7 @@
 rp_module_id="openjk_ja"
 rp_module_desc="openjk_ja - OpenJK (JediAcademy)"
 rp_module_licence="https://raw.githubusercontent.com/JACoders/OpenJK/master/LICENSE.txt"
-rp_module_help="Installs OpenJK built for JediAcademy (SP + MP)"
+rp_module_help="Copy assets0.pk3  assets1.pk3  assets2.pk3  assets3.pk3 into $romdir/jediacademy/"
 rp_module_section="exp"
 rp_module_flags=""
 
@@ -21,7 +21,6 @@ function _arch_openjk_ja() {
     # exact parsing from Makefile
     echo "$(uname -m | sed -e 's/i.86/x86/' | sed -e 's/^arm.*/arm/')"
 }
-
 
 function depends_openjk_ja() {
     getDepends build-essential cmake libjpeg-dev libpng-dev zlib1g-dev libsdl2-dev
@@ -39,7 +38,7 @@ function build_openjk_ja() {
     make clean
     make
 
-    md_ret_require="$md_build/build"
+    md_ret_require="$md_build/build/openjk_sp.$(_arch_openjk_ja)"
 }
 
 function install_openjk_ja() {
@@ -52,18 +51,11 @@ function install_openjk_ja() {
     )
 }
 
-function game_data_openjk_ja() {
-	  mkdir /opt/retropie/ports/openjk_ja/
-}
-
 function configure_openjk_ja() {
-    addPort "openjk_ja" "openjk_sp.$(_arch_openjk_ja)" "Jedi Academy (SP)" "$md_inst/"
-    addPort "openjk_ja" "openjk.$(_arch_openjk_ja)" "Jedi Academy (MP)" "$md_inst/"
+    addPort "openjk_ja" "jediacademy" "Jedi Academy (SP)" "$md_inst/openjk_sp.$(_arch_openjk_ja)"
+    addPort "openjk_ja" "jediacademy" "Jedi Academy (MP)" "$md_inst/openjk.$(_arch_openjk_ja)"
 
     mkRomDir "ports/jediacademy"
 
     moveConfigDir "$md_inst/base" "$romdir/ports/jediacademy"
-    #moveConfigDir "$home/.q3a" "$md_conf_root/ioquake3"
-
-    [[ "$md_mode" == "install" ]] && game_data_openjk_ja
 }
