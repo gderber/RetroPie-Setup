@@ -36,6 +36,8 @@ function build_openjk_ja() {
     mkdir "$md_build/build"
     cd "$md_build/build"
     cmake -DCMAKE_INSTALL_PREFIX="$romdir/ports/jediacademy" ..
+    make clean
+    make
 
     md_ret_require="$md_build/build"
 }
@@ -43,8 +45,8 @@ function build_openjk_ja() {
 function install_openjk_ja() {
     md_ret_files=(
         "build/openjkded.$(_arch_openjk_ja)"
-        "build openjk_sp.$(_arch_openjk_ja)"
-        "build openjk.$(_arch_openjk_ja)"
+        "build/openjk_sp.$(_arch_openjk_ja)"
+        "build/openjk.$(_arch_openjk_ja)"
     )
 }
 
