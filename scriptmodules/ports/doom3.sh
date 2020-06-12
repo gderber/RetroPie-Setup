@@ -10,11 +10,11 @@
 #
 
 rp_module_id="doom3"
-rp_module_desc="Doom 3: BFG Edition"
+rp_module_desc="Doom 3"
 rp_module_licence="https://raw.githubusercontent.com/dhewm/dhewm3/master/COPYING.txt"
 rp_module_help=""
 rp_module_section="exp"
-rp_module_flags="!all x86"
+rp_module_flags=""
 
 
 function depends_doom3() {
@@ -37,10 +37,9 @@ function build_doom3() {
 
 function install_doom3() {
     md_ret_files=(
-        "build/RBDoom3BFG"
-        "base/default.cfg"
-        "base/extract_resources.cfg"
-        "base/renderprogs"
+        "build/dhewm3"
+        "build/d3xp.so"
+        "build/base.so"
     )
 }
 
