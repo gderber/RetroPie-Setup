@@ -10,56 +10,73 @@
 #
 
 rp_module_id="rott"
-rp_module_desc="rott - Rise of the Triad port"
+rp_module_desc="rott - Rise of the Triad - Dark Wark"
 rp_module_licence="GPL2 http://svn.icculus.org/*checkout*/rott/trunk/COPYING?revision=234"
-rp_module_help="Please add your full version ROTT files to $romdir/ports/$md_id/ to play."
+rp_module_help="For the full version, you must add/replace the following files:
+darkwar.rtc
+darkwar.rtl
+darkwar.wad
+extreme.rtl # Maybe
+huntbgin.rtc
+huntbgin.rtl
+remote1.rts
+rottcd.rtc
+rottsite.rtc
+"
 rp_module_section="exp"
-rp_module_flags="!mali !x86"
+rp_module_flags="!mali"
 
 function depends_rott() {
     getDepends libsdl1.2-dev libsdl-mixer1.2-dev automake autoconf subversion unzip
 }
 
 function sources_rott() {
-    svn checkout svn://svn.icculus.org/rott/trunk/ standard
-    svn checkout svn://svn.icculus.org/rott/trunk/ shareware
+    svn checkout svn://svn.icculus.org/rott/trunk/
 }
 
 function build_rott() {
-    cd standard/
+    local opts
+
+    cd $md_build/trunk
+    if [[ ! -f $romdir/darkwar.rtc ]]; then
+        opts="--enable-shareware"
+    fi
+
     autoreconf -fiv
-    ./configure --prefix="$md_inst" --enable-datadir="$romdir/ports/$md_id/standard"
-    make
-    
-    cd ../shareware/
-    autoreconf -fiv
-    ./configure --prefix="$md_inst" --enable-datadir="$romdir/ports/$md_id/shareware" --enable-shareware --enable-suffix="shareware"
+    ./configure --prefix="$md_inst" --enable-datadir="$romdir/ports/$md_id/" $opts
     make
     md_ret_require=(
-        "$md_build/standard/rott/rott"
-        "$md_build/shareware/rott/rott-shareware"
+        "$md_build/trunk/rott/rott"
     )
 }
 
 function install_rott() {
-    cd standard
-    make install
-    cd ../shareware
-    make install
+    md_ret_files=("trunk/rott/rott")
 }
 
+function game_data_rotto() {
+    pushd "$romdir/ports/$md_id"
+    rename 'y/A-Z/a-z/' *
+    popd
+
+    if [[ ! -f $romdir/ports darkwar.rtc && ! -f $romdir/ports/huntbgin.rtc ]]; then
+        wget "http://icculus.org/rott/share/1rott13.zip" -O $md_build/1rott13.zip
+        downloadAndExtract $md_build/1rott13.zip $md_build/rottsw13.shr
+        unzip -L -o rottsw13.shr -d "$md_inst" huntbgin.wad huntbgin.rtc huntbgin.rtl remote1.rts
+    fi
+}
 function configure_rott() {
-    mkRomDir "ports"
     mkRomDir "ports/$md_id"
-    mkRomDir "ports/$md_id/standard"
-    mkRomDir "ports/$md_id/shareware"
-    
-    wget "http://icculus.org/rott/share/1rott13.zip" -O 1rott13.zip
-    unzip -L -o 1rott13.zip rottsw13.shr
-    unzip -L -o rottsw13.shr -d "$md_inst/shareware" huntbgin.wad huntbgin.rtc huntbgin.rtl remote1.rts
-    
+
+    if [[ "$md_mode" == "install" ]]; then
+        game_data_rott
+    fi
+
     moveConfigDir "$home/.rott" "$md_conf_root/rott"
 
-    addPort "$md_id" "rott" "rott - Rise of the Triad port" "$md_inst/bin/rott"
-    addPort "$md_id" "rott-shareware" "rott - Rise of the Triad port Shareware" "$md_inst/bin/rott-shareware"
+    if [[ ! -f $romdir/darkwar.rtc ]]; then
+        addPort "$md_id" "rott" "Rise of the Triad - The Hunt Begins" "$md_inst/bin/rott"
+    else
+        addPort "$md_id" "rott" "Rise of the Triad - Dark War" "$md_inst/bin/rott"
+    fi
 }
