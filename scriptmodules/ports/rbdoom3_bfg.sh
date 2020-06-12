@@ -44,7 +44,7 @@ function install_rbdoom3_bfg() {
 }
 
 function configure_rbdoom3_bfg() {
-    addPort "rbdoom3_bfg" "rbdoom3_bfg" "Doom 3 - BFG" "$md_inst/"
+    addPort "rbdoom3_bfg" "rbdoom3_bfg" "Doom 3 - BFG" "$md_inst/RBDoom3BFG"
 
     mkRomDir "ports/rbdoom3_bfg"
 
