@@ -35,7 +35,7 @@ function sources_openjk_ja() {
 function build_openjk_ja() {
     mkdir "$md_build/build"
     cd "$md_build/build"
-    cmake -DCMAKE_INSTALL_PREFIX="$romdir/ports/jediacademy" ..
+    cmake -DCMAKE_INSTALL_PREFIX="$md_inst" ..
     make clean
     make
 
