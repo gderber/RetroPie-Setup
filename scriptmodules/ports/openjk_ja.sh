@@ -11,8 +11,8 @@
 #
 
 rp_module_id="openjk_ja"
-rp_module_desc="openjk_ja - OpenJK (JediAcademy)"
-rp_module_licence="https://raw.githubusercontent.com/JACoders/OpenJK/master/LICENSE.txt"
+rp_module_desc="openjk_ja - OpenJK: JediAcademy (SP + MP)"
+rp_module_licence="GPL2 https://raw.githubusercontent.com/JACoders/OpenJK/master/LICENSE.txt"
 rp_module_help="Copy assets0.pk3  assets1.pk3  assets2.pk3  assets3.pk3 into $romdir/jediacademy/"
 rp_module_section="exp"
 rp_module_flags=""
@@ -52,8 +52,8 @@ function install_openjk_ja() {
 }
 
 function configure_openjk_ja() {
-    addPort "openjk_ja" "jediacademy" "Jedi Academy (SP)" "$md_inst/openjk_sp.$(_arch_openjk_ja)"
-    addPort "openjk_ja" "jediacademy" "Jedi Academy (MP)" "$md_inst/openjk.$(_arch_openjk_ja)"
+    addPort "openjk_ja" "jediacademy" "Star Wars - Jedi Knight - Jedi Academy (SP)" "$md_inst/openjk_sp.$(_arch_openjk_ja)"
+    addPort "openjk_ja" "jediacademy" "Star Wars - Jedi Knight - Jedi Academy (MP)" "$md_inst/openjk.$(_arch_openjk_ja)"
 
     mkRomDir "ports/jediacademy"
 
