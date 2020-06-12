@@ -46,8 +46,8 @@ function install_openjk_ja() {
         "build/openjkded.$(_arch_openjk_ja)"
         "build/openjk_sp.$(_arch_openjk_ja)"
         "build/openjk.$(_arch_openjk_ja)"
-        "build/code/rd-vanilla/rdsp-vanilla_x86_64.so"
-        "build/codemp/rd-vanilla/rd-vanilla_x86_64.so"
+        "build/code/rd-vanilla/rdsp-vanilla_$(_arch_openjk_ja).so"
+        "build/codemp/rd-vanilla/rd-vanilla_$(_arch_openjk_ja).so"
     )
 }
 
