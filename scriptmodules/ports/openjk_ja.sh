@@ -58,7 +58,10 @@ function configure_openjk_ja() {
     addPort "openjk_ja" "openjk_sp.$(_arch_openjk_ja)" "Jedi Academy (SP)" "$md_inst/"
     addPort "openjk_ja" "openjk.$(_arch_openjk_ja)" "Jedi Academy (MP)" "$md_inst/"
 
-    mkRomDir "ports/jediacademy/base"
+    mkRomDir "ports/jediacademy"
+
+    moveConfigDir "$md_inst/base" "$romdir/ports/jediacademy"
+    #moveConfigDir "$home/.q3a" "$md_conf_root/ioquake3"
 
     [[ "$md_mode" == "install" ]] && game_data_openjk_ja
 }
