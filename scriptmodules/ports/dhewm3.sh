@@ -9,8 +9,8 @@
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
-rp_module_id="doom3"
-rp_module_desc="Doom 3"
+rp_module_id="dhewm3"
+rp_module_desc="dhewm3 - Doom 3"
 rp_module_licence="GPL3 https://raw.githubusercontent.com/dhewm/dhewm3/master/COPYING.txt"
 rp_module_help="Please copy
 MD5 (base/pak000.pk4) = 71b8d37b2444d3d86a3661783844fe
