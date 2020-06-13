@@ -46,14 +46,19 @@ function install_openjk_ja() {
         "build/openjkded.$(_arch_openjk_ja)"
         "build/openjk_sp.$(_arch_openjk_ja)"
         "build/openjk.$(_arch_openjk_ja)"
+        "build/code/game/jagame$(_arch_openjk_ja).so"
         "build/code/rd-vanilla/rdsp-vanilla_$(_arch_openjk_ja).so"
+        "build/codemp/game/jampgame$(_arch_openjk_ja).so"
+        "build/codemp/cgame/cgame$(_arch_openjk_ja).so"
+        "build/codemp/ui/ui$(_arch_openjk_ja).so"
         "build/codemp/rd-vanilla/rd-vanilla_$(_arch_openjk_ja).so"
+
     )
 }
 
 function configure_openjk_ja() {
-    addPort "openjk_ja" "jediacademy" "Star Wars - Jedi Knight - Jedi Academy (SP)" "$md_inst/openjk_sp.$(_arch_openjk_ja)"
-    addPort "openjk_ja" "jediacademy" "Star Wars - Jedi Knight - Jedi Academy (MP)" "$md_inst/openjk.$(_arch_openjk_ja)"
+    addPort "openjk_ja" "jediacademy_sp" "Star Wars - Jedi Knight - Jedi Academy (SP)" "$md_inst/openjk_sp.$(_arch_openjk_ja)"
+    addPort "openjk_ja" "jediacademy_mp" "Star Wars - Jedi Knight - Jedi Academy (MP)" "$md_inst/openjk.$(_arch_openjk_ja)"
 
     mkRomDir "ports/jediacademy"
 
