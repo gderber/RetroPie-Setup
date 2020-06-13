@@ -48,7 +48,6 @@ function configure_rbdoom3_bfg() {
 
     mkRomDir "ports/doom3_bfg"
 
-    moveConfigDir "$home/.doom_3" "$md_conf_root/rbdoom3_bfg"
     moveConfigDir "$md_inst/base" "$romdir/ports/doom3_bfg"
 
     if [[ "$md_mode" == "install" ]]; then
