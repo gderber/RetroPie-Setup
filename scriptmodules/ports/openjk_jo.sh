@@ -56,7 +56,12 @@ function install_openjk_jo() {
 }
 
 function configure_openjk_jo() {
-    addPort "openjk_jo" "jedioutcast" "Star Wars - Jedi Knight - Jedi Outcast (SP)" "$md_inst/openjk_sp.$(_arch_openjk_jo)"
+    local launcher_sp=("$md_inst/openjk_sp.$(_arch_openjk_jo) +set com_jk2 1")
+    isPlatform "mesa" && launcher_sp+=("+set cl_renderer opengl1")
+    isPlatform "kms" && launcher_sp+=("+set r_mode -1" "+set r_customwidth %XRES%" "+set r_customheight %YRES%" "+set r_swapInterval 1")
+
+
+    addPort "openjk_jo" "jedioutcast_sp" "Star Wars - Jedi Knight - Jedi Outcast (SP)" "${launcher[*]}"
 
     mkRomDir "ports/jedioutcast"
 
