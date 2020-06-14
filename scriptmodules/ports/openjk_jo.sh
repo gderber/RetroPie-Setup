@@ -43,25 +43,24 @@ function build_openjk_jo() {
 
 function install_openjk_jo() {
     md_ret_files=(
-        "build/openjk_sp.$(_arch_openjk_jo)"
         "build/code/game/jagame$(_arch_openjk_jo).so"
         "build/code/rd-vanilla/rdjosp-vanilla_$(_arch_openjk_jo).so"
         "build/code/rd-vanilla/rdsp-vanilla_$(_arch_openjk_jo).so"
         "build/codeJK2/game/jospgame$(_arch_openjk_jo).so"
-        "build/codemp/game/jampgamex86_64.so"
-        "build/codemp/cgame/cgamex86_64.so"
-        "build/codemp/ui/uix86_64.so"
-        "build/codemp/rd-vanilla/rd-vanilla_x86_64.so"
+        "build/codemp/cgame/cgame$(_arch_openjk_jo).so"
+        "build/codemp/game/jampgame$(_arch_openjk_jo).so"
+        "build/codemp/rd-vanilla/rd-vanilla_$(_arch_openjk_jo).so"
+        "build/codemp/ui/ui$(_arch_openjk_jo).so"
+        "build/openjo_sp.$(_arch_openjk_jo)"
     )
 }
 
 function configure_openjk_jo() {
-    local launcher_sp=("$md_inst/openjk_sp.$(_arch_openjk_jo) +set com_jk2 1")
-    isPlatform "mesa" && launcher_sp+=("+set cl_renderer opengl1")
-    isPlatform "kms" && launcher_sp+=("+set r_mode -1" "+set r_customwidth %XRES%" "+set r_customheight %YRES%" "+set r_swapInterval 1")
+    local launcher_jo_sp=("$md_inst/openjo_sp.$(_arch_openjk_jo) +set com_jk2 1")
+    isPlatform "mesa" && launcher_jo_sp+=("+set cl_renderer opengl1")
+    isPlatform "kms" && launcher_jo_sp+=("+set r_mode -1" "+set r_customwidth %XRES%" "+set r_customheight %YRES%" "+set r_swapInterval 1")
 
-
-    addPort "openjk_jo" "jedioutcast_sp" "Star Wars - Jedi Knight - Jedi Outcast (SP)" "${launcher[*]}"
+    addPort "$md_id" "jedioutcast_sp" "Star Wars - Jedi Knight - Jedi Outcast (SP)" "${launcher_jo_sp[*]}"
 
     mkRomDir "ports/jedioutcast"
 
