@@ -57,12 +57,12 @@ function install_openjk_ja() {
 
 function configure_openjk_ja() {
     local launcher_sp=("$md_inst/openjk_sp.$(_arch_openjk_ja)")
-    isPlatform "mesa" && launcher_sp+=("+set cl_renderer opengl1")
-    isPlatform "kms" && launcher_sp+=("+set r_mode -1" "+set r_customwidth %XRES%" "+set r_customheight %YRES%" "+set r_swapInterval 1")
+    #isPlatform "mesa" && launcher_sp+=("+set cl_renderer opengl1")
+    #isPlatform "kms" && launcher_sp+=("+set r_mode -1" "+set r_customwidth %XRES%" "+set r_customheight %YRES%" "+set r_swapInterval 1")
 
     local launcher_mp=("$md_inst/openjk.$(_arch_openjk_ja)")
-    isPlatform "mesa" && launcher_mp+=("+set cl_renderer opengl1")
-    isPlatform "kms" && launcher_mp+=("+set r_mode -1" "+set r_customwidth %XRES%" "+set r_customheight %YRES%" "+set r_swapInterval 1")
+    #isPlatform "mesa" && launcher_mp+=("+set cl_renderer opengl1")
+    #isPlatform "kms" && launcher_mp+=("+set r_mode -1" "+set r_customwidth %XRES%" "+set r_customheight %YRES%" "+set r_swapInterval 1")
 
     addPort "openjk_ja" "jediacademy_sp" "Star Wars - Jedi Knight - Jedi Academy (SP)" "${launcher_sp[*]}"
     addPort "openjk_ja" "jediacademy_mp" "Star Wars - Jedi Knight - Jedi Academy (MP)" "${launcher_mp[*]}"
