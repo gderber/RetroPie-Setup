@@ -23,7 +23,7 @@ function _arch_etlegacy() {
 }
 
 function depends_etlegacy() {
-    getDepends cmake libsdl2-dev libopenal-dev libc6-dev-i386 libx11-dev:i386 libgl1-mesa-dev:i386
+    getDepends cmake #libsdl2-dev libopenal-dev libc6-dev-i386 libx11-dev:i386 libgl1-mesa-dev:i386
 }
 
 function sources_etlegacy() {
@@ -64,7 +64,7 @@ function install_etlegacy() {
 }
 
 function game_data_etlegacy() {
-    downloadAndExtract "https://cdn.splashdamage.com/downloads/games/wet/et260b.x86_full.zip" "$romdi/ports/etlegacy"
+    downloadAndExtract "https://cdn.splashdamage.com/downloads/games/wet/et260b.x86_full.zip" "$romdir/ports/etlegacy"
 }
 
 function configure_etlegacy() {
