@@ -12,7 +12,7 @@
 rp_module_id="etlegacy"
 rp_module_desc="etlegacy - ET: Legacy - A Fully compatable Wolfenstein: Enemy Territory 2.60b Client and Server"
 rp_module_licence="https://raw.githubusercontent.com/etlegacy/etlegacy/master/COPYING.txt"
-rp_module_help=""
+rp_module_help="Fix Me!"
 rp_module_section="exp"
 rp_module_flags=""
 
@@ -31,7 +31,7 @@ function sources_etlegacy() {
 }
 
 function build_etlegacy() {
-    local params=(-DCMAKE_BUILD_TYPE=Release -DINSTALL_DEFAULT_BINDIR="$md_inst/" -DINSTALL_DEFAULT_BASEDIR="$romdir/ports/etlegacy")
+    local params=(-DCMAKE_BUILD_TYPE=Release -DINSTALL_DEFAULT_BINDIR=$md_inst -DINSTALL_DEFAULT_BASEDIR=$romdir/ports/etlegacy)
 
     if [[ "${md_id}" == "etlegacy_64"]]; then
         params+=(-DCROSS_COMPILE32=0)
