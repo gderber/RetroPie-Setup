@@ -30,15 +30,15 @@ Into the $romdir/doom3/base and $romdir/doom3/d3xp directories"
 rp_module_section="exp"
 rp_module_flags=""
 
-function depends_doom3() {
+function depends_dhewm3() {
     getDepends cmake libsdl2-dev libopenal-dev
 }
 
-function sources_doom3() {
+function sources_dhewm3() {
     gitPullOrClone "$md_build" https://github.com/dhewm/dhewm3.git
 }
 
-function build_doom3() {
+function build_dhewm3() {
     mkdir $md_build/build
 
     cd "$md_build/build"
@@ -49,7 +49,7 @@ function build_doom3() {
     md_ret_require="$md_build/build"
 }
 
-function install_doom3() {
+function install_dhewm3() {
     md_ret_files=(
         "build/dhewm3"
         "build/d3xp.so"
@@ -57,18 +57,18 @@ function install_doom3() {
     )
 }
 
-function configure_doom3() {
+function configure_dhewm3() {
     addPort "$md_id" "doom3" "Doom 3" "$md_inst/dhewm3"
 
     mkRomDir "ports/doom3/base"
     mkRomDir "ports/doom3/d3xp"
 
-    moveConfigDir "$home/.doom_3" "$md_conf_root/doom3"
     moveConfigDir "$md_inst/base" "$romdir/ports/doom3/base"
     moveConfigDir "$md_inst/d3xp" "$romdir/ports/doom3/d3xp"
 
-    if [[ "$md_mode" == "install" ]]; then
-        mkdir /opt/retropie/ports/doom3/base/
-        mkUserDir "$md_conf_root/doom3"
-    fi
+    # Forgot why I added this
+    #if [[ "$md_mode" == "install" ]]; then
+    #    mkdir /opt/retropie/ports/doom3/base/
+    #    mkUserDir "$md_conf_root/doom3"
+    #fi
 }
