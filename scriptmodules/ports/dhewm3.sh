@@ -44,6 +44,7 @@ function build_doom3() {
     cd "$md_build/build"
 
     cmake "../neo"
+    make clean
     make
     md_ret_require="$md_build/build"
 }
