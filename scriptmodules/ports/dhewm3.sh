@@ -65,10 +65,4 @@ function configure_dhewm3() {
 
     moveConfigDir "$md_inst/base" "$romdir/ports/doom3/base"
     moveConfigDir "$md_inst/d3xp" "$romdir/ports/doom3/d3xp"
-
-    # Forgot why I added this
-    #if [[ "$md_mode" == "install" ]]; then
-    #    mkdir /opt/retropie/ports/doom3/base/
-    #    mkUserDir "$md_conf_root/doom3"
-    #fi
 }
