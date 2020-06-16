@@ -31,7 +31,7 @@ rp_module_section="exp"
 rp_module_flags=""
 
 function depends_dhewm3() {
-    getDepends cmake libsdl2-dev libopenal-dev
+    getDepends cmake libsdl2-dev libopenal-dev libogg-dev libvorbis-dev zlib1g-dev libcurl4-openssl-dev
 }
 
 function sources_dhewm3() {
