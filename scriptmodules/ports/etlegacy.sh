@@ -58,17 +58,31 @@ function install_etlegacy() {
         "build/etl"
         "build/etlded"
         "build/librenderer_opengl1_$(_arch_etlegacy).so"
+        "build/legacy/cgame.mp.$(_arch_etlegacy).so"
+        "build/legacy/ui.mp.$(_arch_etlegacy).so"
+        "build/legacy/qagame.mp.$(_arch_etlegacy).so"
     )
 }
 
 function game_data_etlegacy() {
-    downloadAndExtract "https://cdn.splashdamage.com/downloads/games/wet/et260b.x86_full.zip" "$romdir/ports/etlegacy"
+    downloadAndExtract "https://cdn.splashdamage.com/downloads/games/wet/et260b.x86_full.zip" "$md_build"
+    cd $md_build
+    ./et260b.x86_keygen_V03.run --noexec --target tmp
+    cd $md_build/tmp/etmain
+
+    cp *.pk3 $romdir/ports/etlegacy
 }
 
 function configure_etlegacy() {
-    addPort "$md_id" "etlegacy" "Wolfenstein - Enemy Territory" "$md_inst/"
+    addPort "$md_id" "etlegacy" "Wolfenstein - Enemy Territory" "$md_inst/etl"
 
     mkRomDir "ports/etlegacy"
 
+    moveConfigDir "$md_inst/etmain" "$romdir/ports/etlegacy"
     [[ "$md_mode" == "install" ]] && game_data_etlegacy
+
+    mkdir $md_inst/legacy
+    mv $md_inst/cgame.mp.$(_arch_etlegacy).so $md_inst/legacy/
+    mv $md_inst/ui.mp.$(_arch_etlegacy).so $md_inst/legacy/
+    mv $md_inst/qagame.mp.$(_arch_etlegacy).so $md_inst/legacy/
 }
