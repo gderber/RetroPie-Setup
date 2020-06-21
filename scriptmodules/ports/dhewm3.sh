@@ -58,8 +58,12 @@ function install_dhewm3() {
 }
 
 function configure_dhewm3() {
-    addPort "$md_id" "doom3" "Doom 3" "$md_inst/dhewm3"
-
+    if isPlatform "rpi"; then
+        addPort "$md_id" "doom3" "Doom 3" "XINIT:$md_inst/dhewm3"
+    else
+        addPort "$md_id" "doom3" "Doom 3" "$md_inst/dhewm3"
+    fi
+    
     mkRomDir "ports/doom3/base"
     mkRomDir "ports/doom3/d3xp"
 
