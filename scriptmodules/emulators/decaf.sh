@@ -20,9 +20,9 @@ function depends_decaf() {
     local depends=(cmake libcurl4-openssl-dev libsdl2-dev libssl-dev zlib1g-dev)
 
     # Not listed officially; but build fails without these libraries installed
-    depends+=(libuv1-dev libc-ares2-dev glslang-dev glslang-tools)
+    depends+=(libuv1-dev libc-ares2 libc-ares-dev glslang-dev glslang-tools)
     # Optional dependencies
-    depends+=(libavcodec-dev libavfilter-dev libavutil-dev libswscale-dev qtbase5-dev qtbase5-private-dev libqt5svg5-dev g++8)
+    depends+=(libavcodec-dev libavfilter-dev libavutil-dev libswscale-dev qtbase5-dev qtbase5-private-dev libqt5svg5-dev g++-8)
     getDepends "${depends[@]}"
 }
 
@@ -44,7 +44,7 @@ function build_decaf() {
 
     make clean
     make
-    md_ret_require="$md_build/build/Binaries/decaf-emu/opt/decaf-cli"
+    md_ret_require="$md_build/build/obj/decaf-cli"
     # decaf-sdl
 }
 
@@ -56,8 +56,8 @@ function install_decaf() {
 function configure_decaf() {
     mkRomDir "wiiu"
 
-    addEmulator 0 "$md_id-gui" "wiiu" "$md_inst/bin/decaf %ROM%"
-    addEmulator 1 "$md_id" "wiiu" "$md_inst/bin/decaf -e %ROM%"
+    addEmulator 0 "$md_id-cli" "wiiu" "$md_inst/bin/decaf-cli %ROM%"
+    addEmulator 1 "$md_id-sdl" "wiiu" "$md_inst/bin/decaf-sdl %ROM%"
 
     addSystem "wiiu"
 }
