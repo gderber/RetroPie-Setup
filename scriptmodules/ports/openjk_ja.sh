@@ -69,4 +69,6 @@ function configure_openjk_ja() {
     mkRomDir "ports/jediacademy"
 
     moveConfigDir "$md_inst/base" "$romdir/ports/jediacademy"
+
+    ln -s "$md_inst/ui$(_arch_openjk_ja).so" "$romdir/ports/jediacademy/ui$(_arch_openjk_ja)"
 }
