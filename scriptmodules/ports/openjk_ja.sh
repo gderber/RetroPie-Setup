@@ -12,7 +12,7 @@
 rp_module_id="openjk_ja"
 rp_module_desc="openjk_ja - OpenJK: JediAcademy (SP + MP)"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/JACoders/OpenJK/master/LICENSE.txt"
-rp_module_help="Copy assets0.pk3  assets1.pk3  assets2.pk3  assets3.pk3 into $romdir/jediacademy/"
+rp_module_help="Copy assets0.pk3, assets1.pk3, assets2.pk3, and assets3.pk3 into $romdir/ports/jediacademy/"
 rp_module_section="exp"
 rp_module_flags=""
 
@@ -64,21 +64,28 @@ function install_openjk_ja() {
     )
 }
 
+function game_data_openjk_ja() {
+    #if [[ ! -f "$romdir/ports/jediacademy/assets0.pk3" ]]; then
+    #    downloadAndExtract "https://jkhub.org/files/file/92-jedi-academy-single-player-demo/?do=download&csrfKey=4043855506acd81b08fb61e78108358d"
+    #fi
+
+    for lib in ui cgames jagame jampgame
+    do
+        cp "${md_inst}/${lib}$(_arch_openjk_ja).so" "${romdir}/ports/jediacademy/${lib}$(_arch_openjk_ja).so"
+    done
+}
+
 function configure_openjk_ja() {
-    local launcher_sp=("$md_inst/openjk_sp.$(_arch_openjk_ja)")
-    #isPlatform "mesa" && launcher_sp+=("+set cl_renderer opengl1")
-    #isPlatform "kms" && launcher_sp+=("+set r_mode -1" "+set r_customwidth %XRES%" "+set r_customheight %YRES%" "+set r_swapInterval 1")
+    local launcher_sp=("${md_inst}/openjk_sp.$(_arch_openjk_ja)")
+    local launcher_mp=("${md_inst}/openjk.$(_arch_openjk_ja)")
 
-    local launcher_mp=("$md_inst/openjk.$(_arch_openjk_ja)")
-    #isPlatform "mesa" && launcher_mp+=("+set cl_renderer opengl1")
-    #isPlatform "kms" && launcher_mp+=("+set r_mode -1" "+set r_customwidth %XRES%" "+set r_customheight %YRES%" "+set r_swapInterval 1")
-
-    addPort "openjk_ja" "jediacademy_sp" "Star Wars - Jedi Knight - Jedi Academy (SP)" "${launcher_sp[*]}"
-    addPort "openjk_ja" "jediacademy_mp" "Star Wars - Jedi Knight - Jedi Academy (MP)" "${launcher_mp[*]}"
+    addPort "${md_id}" "jediacademy_sp" "Star Wars - Jedi Knight - Jedi Academy (SP)" "${launcher_sp[*]}"
+    addPort "${md_id}" "jediacademy_mp" "Star Wars - Jedi Knight - Jedi Academy (MP)" "${launcher_mp[*]}"
 
     mkRomDir "ports/jediacademy"
 
-    moveConfigDir "$md_inst/base" "$romdir/ports/jediacademy"
+    moveConfigDir "${md_inst}/base" "$romdir/ports/jediacademy"
+    #moveConfigDir "${md_config}/openjk" "$home/.local/share/openjk"
 
-    ln -s "$md_inst/ui$(_arch_openjk_ja).so" "$romdir/ports/jediacademy/ui$(_arch_openjk_ja).so"
+    [[ "$md_mode" == "install" ]] && game_data_openjk_ja
 }
