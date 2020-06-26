@@ -65,10 +65,6 @@ function install_openjk_ja() {
 }
 
 function game_data_openjk_ja() {
-    #if [[ ! -f "$romdir/ports/jediacademy/assets0.pk3" ]]; then
-    #    downloadAndExtract "https://jkhub.org/files/file/92-jedi-academy-single-player-demo/?do=download&csrfKey=4043855506acd81b08fb61e78108358d"
-    #fi
-
     for lib in ui cgames jagame jampgame
     do
         cp "${md_inst}/${lib}$(_arch_openjk_ja).so" "${romdir}/ports/jediacademy/${lib}$(_arch_openjk_ja).so"
