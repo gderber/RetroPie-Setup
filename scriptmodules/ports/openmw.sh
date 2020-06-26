@@ -44,22 +44,38 @@ function build_openmw() {
     make
 
     md_ret_require=(
-        "$md_build/build/openmw"
+        "$md_build/build/bsatool"
+        "$md_build/build/esmtool"
+        "$md_build/build/gamecontrollerdb.txt"
         "$md_build/build/niftest"
+        "$md_build/build/openmw"
+        "$md_build/build/openmw-cs"
+        "$md_build/build/openmw-cs.cfg"
+        "$md_build/build/openmw-essimporter"
+        "$md_build/build/openmw-iniimporter"
+        "$md_build/build/openmw-launcher"
+        "$md_build/build/openmw-wizard"
+        "$md_build/build/openmw.cfg"
+        "$md_build/build/settings-default.cfg"
         )
 }
 
 function install_openmw() {
     md_ret_files=(
-        "build/openmw"
-        "build/openmw-cs"
         "build/bsatool"
         "build/esmtool"
+        "build/gamecontrollerdb.txt"
         "build/niftest"
+        "build/openmw"
+        "build/openmw-cs"
+        "build/openmw-cs.cfg"
         "build/openmw-essimporter"
         "build/openmw-iniimporter"
         "build/openmw-launcher"
         "build/openmw-wizard"
+        "build/openmw.cfg"
+        "build/resources"
+        "build/settings-default.cfg"
         )
 }
 
@@ -69,5 +85,5 @@ function configure_openmw() {
     addPort "$md_id" "morrowind" "The Elder Scrolls III - Morrowind" "${launcher[*]}"
 
     mkRomDir "ports/morrowind"
-    moveConfigDir "$md_inst/data" "$romdir/ports/jediacademy"
+    moveConfigDir "$md_inst/data" "$romdir/ports/morrowind"
 }
