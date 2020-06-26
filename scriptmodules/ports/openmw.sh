@@ -31,7 +31,7 @@ function depends_openmw() {
 
 function sources_openmw() {
     local revision=openmw-0.46.0
-    
+
     gitPullOrClone "$md_build" https://gitlab.com/OpenMW/openmw.git "" "$revision"
 }
 
