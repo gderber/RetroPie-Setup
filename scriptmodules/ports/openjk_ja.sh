@@ -65,7 +65,7 @@ function install_openjk_ja() {
 }
 
 function game_data_openjk_ja() {
-    for lib in ui cgames jagame jampgame
+    for lib in ui cgame jagame jampgame
     do
         cp "${md_inst}/${lib}$(_arch_openjk_ja).so" "${romdir}/ports/jediacademy/${lib}$(_arch_openjk_ja).so"
     done
