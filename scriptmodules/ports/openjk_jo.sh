@@ -65,4 +65,5 @@ function configure_openjk_jo() {
     mkRomDir "ports/jedioutcast"
 
     moveConfigDir "$md_inst/base" "$romdir/ports/jedioutcast"
+    moveConfigDir "$home/.local/share/openjo" "${md_conf_root}/jedioutcast/openjo" 
 }
