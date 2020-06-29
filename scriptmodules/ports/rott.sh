@@ -59,10 +59,10 @@ function game_data_rotto() {
     rename 'y/A-Z/a-z/' *
     popd
 
-    if [[ ! -f $romdir/ports darkwar.rtc && ! -f $romdir/ports/huntbgin.rtc ]]; then
+    if [[ ! -f $romdir/ports/rott/darkwar.rtc && ! -f $romdir/ports/rott/huntbgin.rtc ]]; then
         wget "http://icculus.org/rott/share/1rott13.zip" -O $md_build/1rott13.zip
         downloadAndExtract $md_build/1rott13.zip $md_build/rottsw13.shr
-        unzip -L -o rottsw13.shr -d "$md_inst" huntbgin.wad huntbgin.rtc huntbgin.rtl remote1.rts
+        unzip -L -o rottsw13.shr -d "$romdir/ports/rott/" huntbgin.wad huntbgin.rtc huntbgin.rtl remote1.rts
     fi
 }
 function configure_rott() {
@@ -74,9 +74,9 @@ function configure_rott() {
 
     moveConfigDir "$home/.rott" "$md_conf_root/rott"
 
-    if [[ ! -f $romdir/darkwar.rtc ]]; then
-        addPort "$md_id" "rott" "Rise of the Triad - The Hunt Begins" "$md_inst/bin/rott"
+    if [[ ! -f $romdir/ports/rott/darkwar.rtc ]]; then
+        addPort "$md_id" "rott" "Rise of the Triad - The Hunt Begins" "$md_inst/rott"
     else
-        addPort "$md_id" "rott" "Rise of the Triad - Dark War" "$md_inst/bin/rott"
+        addPort "$md_id" "rott" "Rise of the Triad - Dark War" "$md_inst/rott"
     fi
 }
