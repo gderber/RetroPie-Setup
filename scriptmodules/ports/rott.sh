@@ -38,7 +38,7 @@ function build_rott() {
     local opts
 
     cd $md_build/trunk
-    if [[ ! -f $romdir/darkwar.rtc ]]; then
+    if [[ ! -f $romdir/ports/rott/darkwar.rtc ]]; then
         opts="--enable-shareware"
     fi
 
